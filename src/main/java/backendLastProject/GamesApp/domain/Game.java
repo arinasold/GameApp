@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -23,17 +24,17 @@ public class Game {
 	private Long game_id;
 	private String game_name;
 	private String description;
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "game_genre",
-		joinColumns = @JoinColumn(name = "game_id"),
-		inverseJoinColumns = @JoinColumn(name = "genre_id"))
-	@JsonIgnoreProperties("games")
-	private List<Genre> genres;
-	@ManyToOne
-	@JoinColumn(name = "publisher_id")
-	@JsonIgnoreProperties("games")
-	private Publisher publisher;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "game_genre",
+        joinColumns = @JoinColumn(name = "game_id"),
+        inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    @JsonIgnoreProperties("games")
+    private List<Genre> genres;
 	
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "publisher_id")
+    @JsonIgnoreProperties("games")
+    private Publisher publisher;
 	// constructors
 	
 	public Game() {

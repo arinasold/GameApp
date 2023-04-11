@@ -41,6 +41,11 @@ public class Genre {
 		this.games = games;
 	}
 	
+	public void removeGame(Game game) {
+	    this.games.remove(game);
+	    game.getGenres().remove(this);
+	}
+
 	// getters and setters 
 	
 	public Long getGenre_id() {

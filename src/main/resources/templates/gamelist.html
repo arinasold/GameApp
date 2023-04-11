@@ -37,6 +37,10 @@
 					<a th:href="@{/edit/{id}(id=${game.game_id})}"
 					class="btn btn-secondary">Edit</a>
 				</td>
+				<td>
+					<a th:href="@{/delete/{id}(id=${game.game_id})}" 
+					class="btn btn-danger">Delete</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
