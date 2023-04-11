@@ -1,34 +1,36 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Game List</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Game List</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-    <h1>Games</h1>
+	<h1>Games</h1>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Game Name</th>
-                <th>Description</th>
-                <th>Publisher</th>
-                <th>Genres</th>
-            </tr>
-        </thead>
-<tbody>
-    <tr th:each="game : ${games}">
-        <td th:text="${game.game_name}"></td>
-        <td th:text="${game.description}"></td>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Game Name</th>
+				<th>Description</th>
+				<th>Publisher</th>
+				<th>Genres</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="game : ${games}">
+				<td th:text="${game.game_name}"></td>
+				<td th:text="${game.description}"></td>
 				<td th:text="${game.publisher.publisher_name}"></td>
 				<td><span th:each="genre,iter : ${game.genres}"> <span
 						th:text="${genre.genre_name}"></span> <span
 						th:if="${not iter.last}">,</span> <span th:if="${!iter.last}"></span>
 				</span></td>
 			</tr>
-</tbody>
-    </table>
+		</tbody>
+	</table>
+	<a href="/add" class="btn btn-success">Add new game!</a>
 </body>
 </html>

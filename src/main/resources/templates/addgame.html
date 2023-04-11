@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Game List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h1>Add Game</h1>
+	<div>
+		<form th:object="${game}" th:action="@{/save}" method="post">
+			<p>
+				Game's name: <input type="text" th:field="*{game_name}" />
+			</p>
+			<p>
+				Description: <input type="text" th:field="*{description}" />
+			</p>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<p>
+				Category: <select th:field="*{genres}" class="form-control">
+					<option th:each="genre : ${genres}" th:value="${genre.genre_id}"
+						th:text="${genre.genre_name}"></option>
+				</select>
+			</p>
+			<p>
+				Publisher: <input type="text" th:field="*{publisher.publisher_name}" />
+			</p>
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+
+</body>
+</html>
