@@ -10,12 +10,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+
 import backendLastProject.GamesApp.domain.Game;
 import backendLastProject.GamesApp.domain.GameRepository;
 import backendLastProject.GamesApp.domain.Genre;
 import backendLastProject.GamesApp.domain.GenreRepository;
 import backendLastProject.GamesApp.domain.Publisher;
 import backendLastProject.GamesApp.domain.PublisherRepository;
+import backendLastProject.GamesApp.domain.User;
+import backendLastProject.GamesApp.domain.UserRepository;
 
 @SpringBootApplication
 public class GamesAppApplication {
@@ -27,7 +30,7 @@ public class GamesAppApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demoData(GameRepository gameRepo, GenreRepository genreRepo, PublisherRepository publisherRepo) {
+	public CommandLineRunner demoData(GameRepository gameRepo, GenreRepository genreRepo, PublisherRepository publisherRepo, UserRepository urepository) {
 		
 		return (args) -> {
 			
@@ -86,7 +89,20 @@ public class GamesAppApplication {
 			for (Game game : gameRepo.findAll()) {
 				log.info(game.toString());
 				}
+			
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User admin = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			User user2 = new User("user2", "$2a$10$AXtPagmDwi26Mg08g8atFOHQsaw.0ZGW31YREp7rCZ5yagif1slkq", "USER2");
+			
+			urepository.save(user1);
+			urepository.save(admin);
+			urepository.save(user2);
 		};
+		
+		// user demo sata
+		
+		
+		
 		
 	};
 
