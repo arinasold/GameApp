@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Adding genre</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h1>Add new genre for game!</h1>
+	<div>
+		<form th:object="${genre}" th:action="@{/savegenre}" action="#"
+			method="post">
+			
+			<p>Category: <input type="text" th:field="${genre.genre_name}" /> </p>
+			
+			
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+
+</body>
+</html>
