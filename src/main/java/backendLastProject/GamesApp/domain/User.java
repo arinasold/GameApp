@@ -25,16 +25,23 @@ public class User {
 	@Column(name= "role", nullable = false)
 	private String role;
 	
-	
-	
+
 	public User() {
-		super();
+		this.role = "USER";
+		
 	}
 	public User(String username, String passwordHash, String role) {
 		super();
 		this.username = username;
 		this.passwordHash = passwordHash;
 		this.role = role;
+	}
+	
+	
+	public User(String username, String passwordHash) {
+		super();
+		this.username = username;
+		this.passwordHash = passwordHash;
 	}
 	public Long getId() {
 		return id;

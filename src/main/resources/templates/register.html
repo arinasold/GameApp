@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>REGISTER</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Register</h1>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" th:field="*{username}" required/>
+        <span th:if="${exists}" style="color:red">Username is already taken</span>
+        </div>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{passwordHash}" required/>
+
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +39,7 @@ public class GamesController {
 	}
 	
 	@RequestMapping(value = "/add")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String addGame(Model model){
 	   model.addAttribute("game", new Game());
 	   model.addAttribute("genres", genreRepo.findAll());
@@ -55,6 +56,7 @@ public class GamesController {
 	}
 	
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String editGame(@PathVariable("id") Long gameId, Model model){
 	    Optional<Game> gameOptional = gameRepo.findById(gameId);
 	    if (gameOptional.isPresent()) {
@@ -72,6 +74,7 @@ public class GamesController {
 	}
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteGame(@PathVariable("id") Long id, Model model) {
 	    gameRepo.deleteById(id);
 	    model.addAttribute("message", "Game has been deleted successfully.");

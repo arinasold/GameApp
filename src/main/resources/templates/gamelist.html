@@ -1,14 +1,21 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Game List</title>
-<link rel="stylesheet" href="/css/bootstrap.min.css"
-	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
 	<h1>Games</h1>
+	<div sec:authorize="isAuthenticated()">
+		Hello <span sec:authentication="name"></span>!
+		<a href="/logout">Log out</a>
+	</div>
+	<div sec:authorize="!isAuthenticated()">
+		<a href="/login" class="btn btn-success">Log in</a>
+		<a href="/register" class="btn btn-success">Register</a>
+		
+	</div>
 
 	<table class="table table-striped">
 		<thead>
@@ -17,34 +24,35 @@
 				<th>Description</th>
 				<th>Publisher</th>
 				<th>Genres</th>
-				<th></th>
-			 	<th></th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+			 	<th sec:authorize="hasAuthority('ADMIN')"></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="game : ${games}">
 				<td th:text="${game.game_name}"></td>
 				<td th:text="${game.description}"></td>
-				<td th:text="${game.publisher.publisher_name}"></td>
+					<td th:text="${game.publisher.publisher_name}"></td>
 				<td>
-				<span th:each="genre,iter : ${game.genres}"> <span
+					<span th:each="genre,iter : ${game.genres}"> <span
 						th:text="${genre.genre_name}"></span> <span
 						th:if="${not iter.last}">,</span> <span th:if="${!iter.last}"></span>
-				</span>
+					</span>
 				</td>
 							
-				<td>
+				<td sec:authorize="hasAuthority('ADMIN')">
 					<a th:href="@{/edit/{id}(id=${game.game_id})}"
 					class="btn btn-secondary">Edit</a>
 				</td>
-				<td>
+				<td sec:authorize="hasAuthority('ADMIN')">
 					<a th:href="@{/delete/{id}(id=${game.game_id})}" 
 					class="btn btn-danger">Delete</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	<a href="/add" class="btn btn-success">Add new game!</a>
-	<a href="/genrelist" class="btn btn-success">Manage genres</a>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/add" class="btn btn-success">Add new game!</a>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/genrelist" class="btn btn-success">Manage genres</a>
+	
 </body>
 </html>
