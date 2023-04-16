@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <head>
     <title>Login</title>
 </head>
@@ -13,8 +14,8 @@
         <input type="password" id="password" name="password" required/>
 
 
-        <button type="submit">Login</button>
+        <button type="submit" class="btn btn-success">Login</button>
     </form>
-    <p>Don't have an account? <a href="/register">Register</a></p>
+    <p>Don't have an account? <a href="/register" class="btn btn-primary mb-2">Register</a></p>
 </body>
 </html>

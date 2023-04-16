@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import backendLastProject.GamesApp.domain.Game;
 import backendLastProject.GamesApp.domain.GameRepository;
@@ -75,9 +76,9 @@ public class GamesController {
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
-	public String deleteGame(@PathVariable("id") Long id, Model model) {
+	public String deleteGame(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 	    gameRepo.deleteById(id);
-	    model.addAttribute("message", "Game has been deleted successfully.");
+	    redirectAttributes.addFlashAttribute("message", "Game has been deleted successfully.");
 	    return "redirect:/gamelist";
 	}
 

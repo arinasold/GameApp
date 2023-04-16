@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 
 <head>
 <title>REGISTER</title>
@@ -17,10 +17,10 @@
         <label for="password">Password:</label>
         <input type="password" id="password" th:field="*{passwordHash}" required/>
 
-        <button type="submit">Register</button>
+        <button type="submit" class="btn btn-success">Register</button>
     </form>
     
-    <p>Already have an account? <a href="/login">Log in</a></p>
-    <a href="/gamelist">Back to gamelist</a>
+    <p>Already have an account? <a href="/login" class="btn btn-success">Log in</a></p>
+    <a href="/gamelist" class="btn btn-primary mb-2">Back to gamelist</a>
 </body>
 </html>

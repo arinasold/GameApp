@@ -29,7 +29,7 @@ public class WebSecurityConfig  {
         http
         .authorizeHttpRequests()
         	.requestMatchers("/register").anonymous()
-        //	.requestMatchers("/css/**").permitAll() 
+        	.requestMatchers("/css/**").permitAll() 
         	.requestMatchers("/gamelist").permitAll()
         	.requestMatchers(toH2Console()).hasAuthority("ADMIN")
         	.requestMatchers("/api/**").hasAuthority("ADMIN")
