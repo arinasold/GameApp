@@ -12,12 +12,15 @@
         <label for="username">Username:</label>
         <input type="text" id="username" th:field="*{username}" required/>
         <span th:if="${exists}" style="color:red">Username is already taken</span>
-        </div>
+        
 
         <label for="password">Password:</label>
         <input type="password" id="password" th:field="*{passwordHash}" required/>
 
         <button type="submit">Register</button>
     </form>
+    
+    <p>Already have an account? <a href="/login">Log in</a></p>
+    <a href="/gamelist">Back to gamelist</a>
 </body>
 </html>

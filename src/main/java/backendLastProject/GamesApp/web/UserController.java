@@ -66,6 +66,7 @@ public class UserController {
             return "register";
         }
         // perform validation
+        // making sure paswword is crypted
         String encodedPassword = passwordEncoder.encode(user.getPasswordHash());
         user.setPasswordHash(encodedPassword);
         userRepo.save(user);
