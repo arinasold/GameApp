@@ -28,7 +28,7 @@ public class WebSecurityConfig  {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
         .authorizeHttpRequests()
-        	.requestMatchers("/register").anonymous()
+        	.requestMatchers("/register", "/", "/index", "/home").anonymous()
         	.requestMatchers("/css/**").permitAll() 
         	.requestMatchers("/gamelist").permitAll()
         	.requestMatchers(toH2Console()).hasAuthority("ADMIN")
